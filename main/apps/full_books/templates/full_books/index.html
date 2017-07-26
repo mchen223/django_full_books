@@ -1,0 +1,50 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <title>Full Books</title>
+     <meta name="Full Books" content="Full Books Project">
+
+ </head>
+
+ <body>
+   {%  if books  %}
+   <table>
+      <tr>
+         <th>ID</th>
+         <th>Title</th>
+         <th>Author</th>
+         <th>Category</th>
+      </tr>
+         {%  for book in books  %}
+      <tr>
+         <td>{{ book.id }}</td>
+         <td>{{ book.title }}</td>
+         <td>{{ book.author }}</td>
+         <td>{{ book.category }}</td>
+      </tr>
+         {% endfor %}
+   </table>
+   {% endif %}
+
+   {% if messages %}
+      {% for message in messages %}
+    <p>{{ message }}</p>
+      {% endfor %}
+   {% endif %}
+
+   <h1>Add a Book</h1>
+   <form action="/create" method="POST">
+      {% csrf_token %}
+      <p>Title</p>
+      <p><input type="text" name="title"></p>
+      <p>Category</p>
+      <p><input type="text" name="category"></p>
+      <p>Author</p>
+      <p><input type="text" name="author"></p>
+      <input type="submit" value="Submit!">
+   </form>
+ </body>
+
+ </html>
